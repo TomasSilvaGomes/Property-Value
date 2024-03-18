@@ -1,3 +1,2 @@
 from Projeto import *
-print(merged2.isnull().sum())
-print()
+print(merged1.isnull().sum())
