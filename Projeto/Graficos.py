@@ -15,16 +15,14 @@ def scatter_price_landsize():
 #scatter_landsize_price()
 
 #funcao para mostrar grafico  sobre o preco mais elevado dos diferentes ficheiros onde no eixo x temos o nome do ficheiro e no eixo y o preco:
-def bar_max_price():
-    max_price = ficheiro_analise.groupby('source').max()['price']
-    max_price.plot(kind='bar')
-    plt.title('Max Price')
-    plt.xlabel('Source')
+def bar_price():
+    labels = 'Perth', 'Melbourne', 'Delhi'
+    sizes = [perth['price'].max(), melbourne['price'].max(), delhi['price'].max()]
+    plt.bar(labels, sizes)
+    plt.title('Price')
+    plt.xlabel('City')
     plt.ylabel('Price')
     plt.show()
-bar_max_price()
-
-scatter_price_landsize()
 
 #funcao para mostrar grafico de dispersao de price em funcao de rooms:
 def scatter_rooms_price():
@@ -82,4 +80,9 @@ plt.xlabel('Number of Bedrooms')
 plt.ylabel('Count')
 plt.show()
 
+#faz uma tabela de frequencia sobre a data de cada ficheiro em funcao do preço:
+def freq_table():
+    freq_table = ficheiro_analise.groupby('date_sold').size()
+    print(freq_table)
+freq_table()
 

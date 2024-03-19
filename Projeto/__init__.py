@@ -1,12 +1,16 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
+import os
+import scipy.stats as stats
+import math as math
 
 
 perth_file = pd.read_csv('perth_file.csv')
 
 #Drop all variables except price, bedrooms, bathrooms, adress , date_sold, suburb, postcode:
 perth = perth_file.drop(columns=['suburb','post_code','garage','floor_area','build_year','cbd_dist','nearest_stn','nearest_stn_dist','nearest_sch','nearest_sch_dist','nearest_sch_rank'])
-#criar uma coluna com o nome rooms e atribuir o valor de bedrooms + bathrooms:
+
 
 
 
