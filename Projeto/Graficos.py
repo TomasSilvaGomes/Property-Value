@@ -1,4 +1,6 @@
 from Projeto import *
+import pandas as pd
+import folium
 
 #funcao para mostrar grafico de cada variavel:
 
@@ -94,4 +96,38 @@ def scatter_3D():
     ax.set_zlabel('Price')
     plt.show()
 scatter_3D()
+#mostre um grafico 3d com as variaveis bedrooms, bathrooms e price do ficheiro_analise:
+def scatter_3D_bedrooms_bathrooms_price():
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(ficheiro_analise['bedrooms'], ficheiro_analise['bathrooms'], ficheiro_analise['price'])
+    ax.set_xlabel('Bedrooms')
+    ax.set_ylabel('Bathrooms')
+    ax.set_zlabel('Price')
+    plt.show()
+scatter_3D_bedrooms_bathrooms_price()
+#mostre um grafico de barras com as variaveis yearbuilt e price do ficheiro_analise:
+def bar_yearbuilt_price():
+    labels = ficheiro_analise['yearbuilt']
+    sizes = ficheiro_analise['price']
+    plt.bar(labels, sizes)
+    plt.title('Yearbuilt x Price')
+    plt.xlabel('Yearbuilt')
+    plt.ylabel('Price')
+    plt.show()
+bar_yearbuilt_price()
+
+import pandas as pd
+import folium
+
+data = pd.read_csv('ficheiro_analise.csv')
+
+map = folium.Map(location=[-31.9, 115.8], zoom_start=10)
+
+for index, row in data.iterrows():
+    price = row['price']
+    color = 'green' if price < 500000 else 'orange' if price < 700000 else 'red'
+    folium.Marker(location=[row['latitude'], row['longitude']], popup=f'Price: {price}', icon=folium.Icon(color=color)).add_to(map)
+map.save('map_with_prices.html')
+
 
