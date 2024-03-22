@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-
 from Projeto import *
 
 #funcao para mostrar grafico de cada variavel:
@@ -85,4 +83,15 @@ def freq_table():
     freq_table = ficheiro_analise.groupby('date_sold').size()
     print(freq_table)
 freq_table()
+
+#Faz um grafico 3D com as variaveis longitude, latitude e price do ficheiro_analise:
+def scatter_3D():
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(ficheiro_analise['longitude'], ficheiro_analise['latitude'], ficheiro_analise['price'])
+    ax.set_xlabel('Longitude')
+    ax.set_ylabel('Latitude')
+    ax.set_zlabel('Price')
+    plt.show()
+scatter_3D()
 
