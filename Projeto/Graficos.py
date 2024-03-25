@@ -1,10 +1,22 @@
 from Projeto import *
-import pandas as pd
+import matplotlib.pyplot as plt
+from folium.plugins import MarkerCluster
 import folium
 
-#funcao para mostrar grafico de cada variavel:
 
-#funcao para motrar um grafico de dispersao do price e o landsize:
+data = pd.read_csv('ficheiro_analise.csv')
+
+map = folium.Map(location=[-31.9, 115.8], zoom_start=10)
+
+data = pd.read_csv('ficheiro_analise.csv')
+mapa = folium.Map(location=[-31.9, 115.9], zoom_start=10)
+marker_cluster = MarkerCluster().add_to(mapa)
+
+for index, row in data.iterrows():
+    folium.Marker([row['latitude'], row['longitude']], popup=f"Price: ${row['price']}").add_to(marker_cluster)
+
+mapa.save('mapa.html')
+'''
 def scatter_price_landsize():
     plt.scatter(ficheiro_analise['landsize'], ficheiro_analise['price'])
     plt.title('Price x Landsize')
@@ -55,24 +67,7 @@ def bar_landsize():
     plt.show()
 bar_landsize()
 
-#funcao que mostre a quantidade de address em cada ficheiro num grafico de barras:
-def bar_address():
-    labels = 'Perth', 'Melbourne', 'Delhi'
-    sizes = [len(perth['address']), len(melbourne['address']), len(delhi['address'])]
-    plt.bar(labels, sizes)
-    plt.title('Address')
-    plt.xlabel('City')
-    plt.ylabel('Address')
-    plt.show()
-bar_address()
-
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Load the data from the CSV file
-data = pd.read_csv('ficheiro_analise.csv')
-
-# Create a bar graph to compare the number of bathrooms and bedrooms
+data= pd.read_csv('ficheiro_analise.csv')
 bathroom_bedroom_count = data.groupby(['bedrooms', 'bathrooms']).size().unstack()
 bathroom_bedroom_count.plot(kind='bar', stacked=False, figsize=(12, 6))
 plt.title('Comparison of Bedrooms and Bathrooms')
@@ -80,13 +75,11 @@ plt.xlabel('Number of Bedrooms')
 plt.ylabel('Count')
 plt.show()
 
-#faz uma tabela de frequencia sobre a data de cada ficheiro em funcao do preço:
 def freq_table():
     freq_table = ficheiro_analise.groupby('date_sold').size()
     print(freq_table)
 freq_table()
 
-#Faz um grafico 3D com as variaveis longitude, latitude e price do ficheiro_analise:
 def scatter_3D():
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -117,17 +110,18 @@ def bar_yearbuilt_price():
     plt.show()
 bar_yearbuilt_price()
 
-import pandas as pd
-import folium
+#Funcao que mostra um heat bar com as variaveis do ficheiro_analise:
+def heat_map():
+    plt.matshow(ficheiro_analise.corr())
+    plt.show()
 
-data = pd.read_csv('ficheiro_analise.csv')
+heat_map()
 
-map = folium.Map(location=[-31.9, 115.8], zoom_start=10)
+def create_subplots():
+    fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(15, 5))
+    for i, column in enumerate(ficheiro_analise.columns):
+        ficheiro_analise[column].plot(ax=axes[i], title=column)
+        plt.show()
 
-for index, row in data.iterrows():
-    price = row['price']
-    color = 'green' if price < 500000 else 'orange' if price < 700000 else 'red'
-    folium.Marker(location=[row['latitude'], row['longitude']], popup=f'Price: {price}', icon=folium.Icon(color=color)).add_to(map)
-map.save('map_with_prices.html')
-
-
+create_subplots()
+'''

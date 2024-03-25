@@ -1,9 +1,9 @@
-
-from Projeto import *
-
-
-import pandas as pd
 import numpy as np
+import pandas as pd
+
+
+print(" \nTotal number of null values:" )
+print(data.isnull().sum())
 
 
 data = pd.read_csv('ficheiro_analise.csv')
@@ -19,7 +19,6 @@ print(outliers_count)
 
 data  = pd.read_csv('ficheiro_analise.csv')
 
-print(" Total number of null values:" )
-print(data.isnull().sum())
-print(" Descreption of the data:")
+
+print(" \nDescreption of the data:")
 print(data.describe())
