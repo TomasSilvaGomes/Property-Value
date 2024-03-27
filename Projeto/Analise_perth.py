@@ -6,13 +6,27 @@ from collections import Counter
 
 perth = pd.read_csv('Ficheiros/perth_file.csv')
 
-#fuction of the hist of the price showing the price on Y axis:
-def hist_price():
-    plt.hist(perth['price'], bins=50, color='blue', orientation='horizontal')
-    plt.title('Histogram of the price')
-    plt.xlabel('Frequency')
-    plt.ylabel('Price')
+#fuction that gives the correlation between the variables:
+def heatmap_v():
+    perth = pd.read_csv('Ficheiros/perth_file.csv')
+    perth = perth.drop(['address', 'suburb','nearest_stn','nearest_sch','date_sold'], axis=1)
+    corr_matrix = perth.corr()
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(corr_matrix, annot=True, cmap='YlOrRd')
+    plt.title('Heatmap of Correlation Matrix')
     plt.show()
+
+
+
+#fuction of the hist of the price showing the price 1e6:
+def hist_price():
+    perth['price'] = perth['price'] / 1e6
+    plt.hist(perth['price'], bins=100, color='purple')
+    plt.title('Histogram of price')
+    plt.xlabel('Price')
+    plt.ylabel('Frequency')
+    plt.show()
+
 
 #função que mostra a média, mediana e moda do preço:
 def mean_median_mode():
@@ -23,20 +37,19 @@ def mean_median_mode():
     print('Mediana do preço:', median)
     print('Moda do preço:', mode)
 
-#função para mostrar grafico de dispersao entre o preço e a quantidade de quartos:
-def scatter_price_bedrooms():
-    plt.scatter(perth['bedrooms'], perth['price'], color='blue')
-    plt.title('Scatter plot of price and bedrooms')
-    plt.xlabel('bedrooms')
-    plt.ylabel('price')
-    plt.show()
 
-def heatmap_price_bedrooms():
-    relevant_cols = ['price', 'bedrooms']
-    df_heatmap = perth[relevant_cols]
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(df_heatmap.corr(), annot=True, cmap='YlOrRd')
-    plt.title('Heatmap of Price and Bedrooms')
+
+#fuction that gives the a bar plot of the price (1e6) and bedrooms:
+def plt_price_bedrooms():
+    perth['price_millions'] = perth['price'] / 1e6
+
+    # Create a bar plot of price (in millions) vs. bedrooms
+    plt.figure(figsize=(12, 6))
+    perth.groupby('bedrooms')['price_millions'].mean().plot(kind='bar', color='skyblue')
+    plt.title('Average Price (in Millions) by Number of Bedrooms')
+    plt.xlabel('Numero de Quartos')
+    plt.ylabel('Average Price (Millions)')
+    plt.xticks(rotation=0)
     plt.show()
 
 
@@ -45,7 +58,7 @@ def mean_median_mode_bedrooms():
     mean = perth['bedrooms'].mean()
     median = perth['bedrooms'].median()
     mode = perth['bedrooms'].mode()
-    print('Média dos quartos:', mean)
+    print('\nMédia dos quartos:', mean)
     print('Mediana dos quartos:', median)
     print('Moda dos quartos:', mode)
 
@@ -54,30 +67,33 @@ def mean_median_mode_bathrooms():
     mean = perth['bathrooms'].mean()
     median = perth['bathrooms'].median()
     mode = perth['bathrooms'].mode()
-    print('Média dos banheiros:', mean)
+    print('\nMédia dos banheiros:', mean)
     print('Mediana dos banheiros:', median)
     print('Moda dos banheiros:', mode)
 
-def house_sold_date():
-    perth['date_sold'] = pd.to_datetime(perth['date_sold'], format='%m-%Y')
-
-    date_counts = dict(Counter(perth['date_sold']))
-
-    freq_table = pd.DataFrame(list(date_counts.items()), columns=['Date', 'Number of Houses Sold'])
-    freq_table = freq_table.sort_values('Date').reset_index(drop=True)
+#funciton that shows how many houses were sold in sold date :
+def sold_date():
+    sold_date = perth['date_sold'].value_counts()
+    print(sold_date)
 
 #funcao que mostre uma tabela bedrooms x buildyear:
 def table_bedrooms_buildyear():
     table = pd.crosstab(perth['bedrooms'], perth['yearbuilt'])
     print(table)
 
-#funcao que mostre um grafico de dispersao price Vs land_size:
-def scatter_price_landsize():
-    plt.scatter(perth['price'], perth['land_size'], color='blue')
-    plt.title('Scatter plot of price and land size')
-    plt.xlabel('Price')
-    plt.ylabel('Land size')
+#funcao que mostre grafico de dispersao price(1e6) Vs landsize:
+def disp_price_landsize():
+    perth['price_millions'] = perth['price'] / 1e6
+
+    # Create a bar plot of price (in millions) vs. bedrooms
+    plt.figure(figsize=(10, 6))
+    sns.regplot(x='landsize', y='price_millions', data=perth)
+    plt.title('Regression Plot: Price (in Millions) vs. Land Size')
+    plt.xlabel('Land Size ')
+    plt.ylabel('Price (Millions)')
     plt.show()
+
+
 #funcao que mostre tabela de frequencia bedrooms:
 def frequency_table_bedrooms():
     table = perth['bedrooms'].value_counts()
@@ -85,44 +101,51 @@ def frequency_table_bedrooms():
 
 #funcao que mostre tabela de frequencia yearbuilt:
 def frequency_table_yearbuilt():
-    table = perth['build_year'].value_counts()
+    table = perth['yearbuilt'].value_counts()
     print(table)
 
-#funcao que mostre um grafico circular sobre o suburbio:
-def piechart_suburb():
-    perth['suburb'].value_counts().plot(kind='pie', autopct='%1.1f%%')
-    plt.title('Pie chart of the suburb')
+#funtion that gives the name and correspondent frequency of the suburbs:
+def number_suburbs():
+    number = perth['suburb'].value_counts()
+    print(number)
+
+#funcao que mostre grafico de dispersao entre o preço em (1e6) e a quantidade de garagens em que o maximo de mostragem de garagens seja 20:
+def price_garages():
+    perth['price_millions'] = perth['price'] / 1e6
+    plt.figure(figsize=(10, 6))
+    perth.groupby('garage')['price_millions'].mean().plot(kind='bar', color='blue')
+    plt.title('Gráfico de Dispersão: Preço (em Milhões) vs. Quantidade de Garagens')
+    plt.xlabel('Quantidade de Garagens (Máx: 20)')
+    plt.ylabel('Preço (Milhões)')
+    plt.xticks(rotation=0)
     plt.show()
 
-#funcao que mostre grafico de dispersao entre o preço e a quantidade de garagens:
-def scatter_price_garages():
-    plt.scatter(perth['price'], perth['garage'], color='blue')
-    plt.title('Scatter plot of price and garages')
-    plt.xlabel('Price')
-    plt.ylabel('Garagens')
-    plt.show()
 
 #funcao que mostre a media , mediana e moda dos garages:
 def mean_median_mode_garages():
     mean = perth['garage'].mean()
     median = perth['garage'].median()
     mode = perth['garage'].mode()
-    print('Média das garagens:', mean)
+    print('\nMédia das garagens:', mean)
     print('Mediana das garagens:', median)
+
     print('Moda das garagens:', mode)
 
- hist_price()
-# mean_median_mode()
-#scatter_price_bedrooms()
-heatmap_price_bedrooms()
-# mean_median_mode_bedrooms()
-# mean_median_mode_bathrooms()
 
-#table_bedrooms_buildyear()
-#
-# scatter_price_landsize()
-# frequency_table_bedrooms()
-# frequency_table_yearbuilt()
-# piechart_suburb()
-# scatter_price_garages()
-# mean_median_mode_garages()
+
+
+heatmap_v()
+hist_price()
+mean_median_mode()
+plt_price_bedrooms()
+mean_median_mode_bedrooms()
+mean_median_mode_bathrooms()
+sold_date()
+table_bedrooms_buildyear()
+disp_price_landsize()
+frequency_table_bedrooms()
+frequency_table_yearbuilt()
+number_suburbs()
+price_garages()
+mean_median_mode_garages()
+
