@@ -4,19 +4,19 @@ from folium.plugins import MarkerCluster
 import folium
 
 
-data = pd.read_csv('ficheiro_analise.csv')
+# data = pd.read_csv('ficheiro_analise.csv')
+#
+# map = folium.Map(location=[-31.9, 115.8], zoom_start=10)
+#
+# data = pd.read_csv('ficheiro_analise.csv')
+# mapa = folium.Map(location=[-31.9, 115.9], zoom_start=10)
+# marker_cluster = MarkerCluster().add_to(mapa)
+#
+# for index, row in data.iterrows():
+#     folium.Marker([row['latitude'], row['longitude']], popup=f"Price: ${row['price']}").add_to(marker_cluster)
+#
+# mapa.save('mapa.html')
 
-map = folium.Map(location=[-31.9, 115.8], zoom_start=10)
-
-data = pd.read_csv('ficheiro_analise.csv')
-mapa = folium.Map(location=[-31.9, 115.9], zoom_start=10)
-marker_cluster = MarkerCluster().add_to(mapa)
-
-for index, row in data.iterrows():
-    folium.Marker([row['latitude'], row['longitude']], popup=f"Price: ${row['price']}").add_to(marker_cluster)
-
-mapa.save('mapa.html')
-'''
 def scatter_price_landsize():
     plt.scatter(ficheiro_analise['landsize'], ficheiro_analise['price'])
     plt.title('Price x Landsize')
@@ -67,7 +67,7 @@ def bar_landsize():
     plt.show()
 bar_landsize()
 
-data= pd.read_csv('ficheiro_analise.csv')
+data= pd.read_csv('Ficheiros/ficheiro_analise.csv')
 bathroom_bedroom_count = data.groupby(['bedrooms', 'bathrooms']).size().unstack()
 bathroom_bedroom_count.plot(kind='bar', stacked=False, figsize=(12, 6))
 plt.title('Comparison of Bedrooms and Bathrooms')
@@ -124,4 +124,3 @@ def create_subplots():
         plt.show()
 
 create_subplots()
-'''

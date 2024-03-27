@@ -6,7 +6,7 @@ print(" \nTotal number of null values:" )
 print(data.isnull().sum())
 
 
-data = pd.read_csv('ficheiro_analise.csv')
+data = pd.read_csv('Ficheiros/ficheiro_analise.csv')
 numeric_data = data.select_dtypes(include=[np.number])
 Q1 = numeric_data.quantile(0.25)
 Q3 = numeric_data.quantile(0.75)
@@ -17,7 +17,7 @@ outliers_count = ((numeric_data < lower_bound) | (numeric_data > upper_bound)).s
 print('Outliers count:')
 print(outliers_count)
 
-data  = pd.read_csv('ficheiro_analise.csv')
+data  = pd.read_csv('Ficheiros/ficheiro_analise.csv')
 
 
 print(" \nDescreption of the data:")
