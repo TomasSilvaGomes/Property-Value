@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 import seaborn as sns
-from collections import Counter
 
 perth = pd.read_csv('Ficheiros/perth_file.csv')
 
@@ -13,7 +11,7 @@ def heatmap_v():
     corr_matrix = perth.corr()
     plt.figure(figsize=(10, 8))
     sns.heatmap(corr_matrix, annot=True, cmap='YlOrRd')
-    plt.title('Heatmap of Correlation Matrix')
+    plt.title('Correlação de variáves')
     plt.show()
 
 
@@ -22,9 +20,9 @@ def heatmap_v():
 def hist_price():
     perth['price'] = perth['price'] / 1e6
     plt.hist(perth['price'], bins=100, color='purple')
-    plt.title('Histogram of price')
-    plt.xlabel('Price')
-    plt.ylabel('Frequency')
+    plt.title('Gráfico do preço')
+    plt.xlabel('Preço (em Milhões)')
+    plt.ylabel('Frequência')
     plt.show()
 
 
@@ -42,7 +40,6 @@ def mean_median_mode():
 #fuction that gives the a bar plot of the price (1e6) and bedrooms:
 def plt_price_bedrooms():
     perth['price_millions'] = perth['price'] / 1e6
-
     # Create a bar plot of price (in millions) vs. bedrooms
     plt.figure(figsize=(12, 6))
     perth.groupby('bedrooms')['price_millions'].mean().plot(kind='bar', color='skyblue')
@@ -62,14 +59,14 @@ def mean_median_mode_bedrooms():
     print('Mediana dos quartos:', median)
     print('Moda dos quartos:', mode)
 
-#funcao que mostre a media , mediana e moda dos banheiros:
+#funcao que mostre a media , mediana e moda dos
 def mean_median_mode_bathrooms():
     mean = perth['bathrooms'].mean()
     median = perth['bathrooms'].median()
     mode = perth['bathrooms'].mode()
-    print('\nMédia dos banheiros:', mean)
-    print('Mediana dos banheiros:', median)
-    print('Moda dos banheiros:', mode)
+    print('\nMédia das casas de banho:', mean)
+    print('Mediana das casas de banho:', median)
+    print('Moda das casas de banho:', mode)
 
 #funciton that shows how many houses were sold in sold date :
 def sold_date():
@@ -88,9 +85,9 @@ def disp_price_landsize():
     # Create a bar plot of price (in millions) vs. bedrooms
     plt.figure(figsize=(10, 6))
     sns.regplot(x='landsize', y='price_millions', data=perth)
-    plt.title('Regression Plot: Price (in Millions) vs. Land Size')
-    plt.xlabel('Land Size ')
-    plt.ylabel('Price (Millions)')
+    plt.title('Preço em relação ao Tamanho do Terreno')
+    plt.xlabel('Tamanho do terreno (m²)')
+    plt.ylabel('Preço (Milhões)')
     plt.show()
 
 
@@ -132,6 +129,24 @@ def mean_median_mode_garages():
     print('Moda das garagens:', mode)
 
 
+def price_location():
+    perth['price_millions'] = perth['price'] / 1e6
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x='longitude', y='latitude', data=perth, hue='price_millions', palette='coolwarm')
+    plt.title('Preço em Relação à Localização Geográfica')
+    plt.xlabel('Longitude')
+    plt.ylabel('Latitude')
+    plt.show()
+
+#Preço em relação ao Ano de Construção:
+def price_yearbuilt():
+    perth['price_millions'] = perth['price'] / 1e6
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x='yearbuilt', y='price_millions', data=perth, hue='price_millions', palette='coolwarm')
+    plt.title('Preço em Relação ao Ano de Construção')
+    plt.xlabel('Ano de Construção')
+    plt.ylabel('Preço (Milhões)')
+    plt.show()
 
 
 heatmap_v()
@@ -148,4 +163,5 @@ frequency_table_yearbuilt()
 number_suburbs()
 price_garages()
 mean_median_mode_garages()
-
+price_location()
+price_yearbuilt()
