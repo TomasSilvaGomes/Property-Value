@@ -4,7 +4,7 @@ import seaborn as sns
 
 perth = pd.read_csv('Ficheiros/perth_file.csv')
 
-#fuction that gives the correlation between the variables:
+
 def heatmap_v():
     perth = pd.read_csv('Ficheiros/perth_file.csv')
     perth = perth.drop(['address', 'suburb','nearest_stn','nearest_sch','date_sold'], axis=1)
@@ -16,7 +16,6 @@ def heatmap_v():
 
 
 
-#fuction of the hist of the price showing the price 1e6:
 def hist_price():
     perth['price'] = perth['price'] / 1e6
     plt.hist(perth['price'], bins=100, color='purple')
@@ -26,7 +25,6 @@ def hist_price():
     plt.show()
 
 
-#função que mostra a média, mediana e moda do preço:
 def mean_median_mode():
     mean = perth['price'].mean()
     median = perth['price'].median()
@@ -37,7 +35,6 @@ def mean_median_mode():
 
 
 
-#fuction that gives the a bar plot of the price (1e6) and bedrooms:
 def plt_price_bedrooms():
     perth['price_millions'] = perth['price'] / 1e6
     # Create a bar plot of price (in millions) vs. bedrooms
@@ -50,7 +47,6 @@ def plt_price_bedrooms():
     plt.show()
 
 
-#funcao que mostre a media , mediana e moda dos quartos:
 def mean_median_mode_bedrooms():
     mean = perth['bedrooms'].mean()
     median = perth['bedrooms'].median()
@@ -59,7 +55,6 @@ def mean_median_mode_bedrooms():
     print('Mediana dos quartos:', median)
     print('Moda dos quartos:', mode)
 
-#funcao que mostre a media , mediana e moda dos
 def mean_median_mode_bathrooms():
     mean = perth['bathrooms'].mean()
     median = perth['bathrooms'].median()
@@ -68,21 +63,16 @@ def mean_median_mode_bathrooms():
     print('Mediana das casas de banho:', median)
     print('Moda das casas de banho:', mode)
 
-#funciton that shows how many houses were sold in sold date :
 def sold_date():
     sold_date = perth['date_sold'].value_counts()
     print(sold_date)
 
-#funcao que mostre uma tabela bedrooms x buildyear:
 def table_bedrooms_buildyear():
     table = pd.crosstab(perth['bedrooms'], perth['yearbuilt'])
     print(table)
 
-#funcao que mostre grafico de dispersao price(1e6) Vs landsize:
 def disp_price_landsize():
     perth['price_millions'] = perth['price'] / 1e6
-
-    # Create a bar plot of price (in millions) vs. bedrooms
     plt.figure(figsize=(10, 6))
     sns.regplot(x='landsize', y='price_millions', data=perth)
     plt.title('Preço em relação ao Tamanho do Terreno')
@@ -91,22 +81,18 @@ def disp_price_landsize():
     plt.show()
 
 
-#funcao que mostre tabela de frequencia bedrooms:
 def frequency_table_bedrooms():
     table = perth['bedrooms'].value_counts()
     print(table)
 
-#funcao que mostre tabela de frequencia yearbuilt:
 def frequency_table_yearbuilt():
     table = perth['yearbuilt'].value_counts()
     print(table)
 
-#funtion that gives the name and correspondent frequency of the suburbs:
 def number_suburbs():
     number = perth['suburb'].value_counts()
     print(number)
 
-#funcao que mostre grafico de dispersao entre o preço em (1e6) e a quantidade de garagens em que o maximo de mostragem de garagens seja 20:
 def price_garages():
     perth['price_millions'] = perth['price'] / 1e6
     plt.figure(figsize=(10, 6))
@@ -118,7 +104,6 @@ def price_garages():
     plt.show()
 
 
-#funcao que mostre a media , mediana e moda dos garages:
 def mean_median_mode_garages():
     mean = perth['garage'].mean()
     median = perth['garage'].median()
@@ -149,19 +134,19 @@ def price_yearbuilt():
     plt.show()
 
 
-heatmap_v()
-hist_price()
-mean_median_mode()
-plt_price_bedrooms()
-mean_median_mode_bedrooms()
-mean_median_mode_bathrooms()
-sold_date()
-table_bedrooms_buildyear()
-disp_price_landsize()
-frequency_table_bedrooms()
-frequency_table_yearbuilt()
-number_suburbs()
-price_garages()
-mean_median_mode_garages()
-price_location()
-price_yearbuilt()
+# heatmap_v()
+# hist_price()
+# mean_median_mode()
+# plt_price_bedrooms()
+# mean_median_mode_bedrooms()
+# mean_median_mode_bathrooms()
+# sold_date()
+# table_bedrooms_buildyear()
+# disp_price_landsize()
+# frequency_table_bedrooms()
+# frequency_table_yearbuilt()
+# number_suburbs()
+# price_garages()
+# mean_median_mode_garages()
+# price_location()
+# price_yearbuilt()

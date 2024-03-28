@@ -4,7 +4,7 @@ import seaborn as sns
 
 melbourne = pd.read_csv('Ficheiros/melb_data.csv')
 
-#fuction that gives the correlation between the variables:
+
 def heatmap_v():
     melbourne = pd.read_csv('Ficheiros/melb_data.csv')
     melbourne = melbourne.drop(['address', 'suburb','type','councilarea','regionname','date_sold','method','sellerg'], axis=1)
@@ -14,7 +14,7 @@ def heatmap_v():
     plt.title('Correlação de variáves')
     plt.show()
 
-#fuction that gives the mediana and median of the price:
+
 def mean_median_mode():
     mean = melbourne['price'].mean()
     median = melbourne['price'].median()
@@ -22,7 +22,7 @@ def mean_median_mode():
     print('Mediana do preço:', median)
 
 
-#fuction that gives the mediana and median of the bedrooms:
+
 def mean_median_mode_bedrooms():
     mean = melbourne['bedrooms'].mean()
     median = melbourne['bedrooms'].median()
@@ -41,12 +41,12 @@ def mean_median_car():
     print('\nMédia dos carros:', mean)
     print('Mediana dos carros:', median)
 
-#funcao que devolva uma tabela com a quantidade dos diferentes type:
+
 def count_type():
     type = melbourne['type'].value_counts()
     print(type)
 
-#Preço em relação aos Quartos num scatterplot:
+
 def scatterplt_price_bedrooms():
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x='bedrooms', y='price', data=melbourne, color='skyblue')
@@ -56,7 +56,7 @@ def scatterplt_price_bedrooms():
     plt.show()
 
 
-#preco em relacao as casas de banho num scatterplot:
+
 def scatterplt_price_bathrooms():
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x='bathrooms', y='price', data=melbourne, color='skyblue')
@@ -65,7 +65,7 @@ def scatterplt_price_bathrooms():
     plt.ylabel('Preço')
     plt.show()
 
-#Preço em relação à Localização Geográfica
+
 def price_location():
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x='longitude', y='latitude', data=melbourne, hue='price', palette='coolwarm')
@@ -89,7 +89,7 @@ def number_suburbs():
     number = melbourne['suburb'].value_counts()
     print(number)
 
-#fuction that gives a circular graphic of the type of building:
+
 def circular_graphic():
     plt.figure(figsize=(10, 6))
     melbourne['type'].value_counts().plot.pie(autopct='%1.1f%%', startangle=90, colors=['#ff9999','#66b3ff','#99ff99'])
@@ -97,7 +97,7 @@ def circular_graphic():
     plt.ylabel('')
     plt.show()
 
-#fuction that gives a circular graphic of the council area:
+
 def table_council_area():
     table = melbourne['councilarea'].value_counts()
     print(table)
@@ -108,21 +108,17 @@ def region_name():
     print(region)
 
 
-#fucntion that gives a grapich with the comparation of the price and the landsize:
+
 def disp_price_landsize():
-
-
-    # Create a bar plot of price (in millions) vs. bedrooms
     plt.figure(figsize=(10, 6))
     sns.regplot(x='landsize', y='price', data=melbourne)
-
     plt.xlim(0, 100000)
     plt.title('Preço em relação ao Tamanho do Terreno')
     plt.xlabel('Tamanho do terreno (m²)')
     plt.ylabel('Preço ')
     plt.show()
 
-#fuction that gives a grapich with the comparation of the price and the method:
+
 def price_method():
     plt.figure(figsize=(12, 6))
     melbourne.groupby('method')['price'].mean().plot(kind='bar', color='skyblue')
@@ -133,12 +129,8 @@ def price_method():
     plt.show()
 
 def disp_price_landsize_outlier():
-
-
-    # Create a bar plot of price (in millions) vs. bedrooms
     plt.figure(figsize=(10, 6))
     sns.regplot(x='landsize', y='price', data=melbourne)
-
     plt.xlim(0, 450000)
     plt.title('Preço em relação ao Tamanho do Terreno')
     plt.xlabel('Tamanho do terreno (m²)')
