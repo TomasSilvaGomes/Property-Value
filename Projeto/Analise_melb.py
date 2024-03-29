@@ -137,23 +137,26 @@ def disp_price_landsize_outlier():
     plt.ylabel('Preço ')
     plt.show()
 
-heatmap_v()
-mean_median_mode()
-mean_median_mode_bedrooms()
-mean_median_bathrooms()
-mean_median_car()
-count_type()
-price_location()
-scatterplt_price_bedrooms()
-scatterplt_price_bathrooms()
-table_bedrooms_buildyear()
-frequency_table_bedrooms()
-frequency_table_yearbuilt()
-number_suburbs()
-circular_graphic()
-table_council_area()
-disp_price_landsize()
-price_method()
+
+''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
+
+# heatmap_v()
+# mean_median_mode()
+# mean_median_mode_bedrooms()
+# mean_median_bathrooms()
+# mean_median_car()
+# count_type()
+# price_location()
+# scatterplt_price_bedrooms()
+# scatterplt_price_bathrooms()
+# table_bedrooms_buildyear()
+# frequency_table_bedrooms()
+# frequency_table_yearbuilt()
+# number_suburbs()
+# circular_graphic()
+# table_council_area()
+# disp_price_landsize()
+# price_method()
 #disp_price_landsize_outlier() #Em caso de querer ver o grafico inteiro com um unico outlier nitido.
 
 

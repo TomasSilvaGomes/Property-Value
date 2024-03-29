@@ -16,7 +16,7 @@ def heatmap_v():
 
 
 
-def hist_price():
+def hist_preco():
     perth['price'] = perth['price'] / 1e6
     plt.hist(perth['price'], bins=100, color='purple')
     plt.title('Gráfico do preço')
@@ -25,7 +25,7 @@ def hist_price():
     plt.show()
 
 
-def mean_median_mode():
+def media_mediana_moda():
     mean = perth['price'].mean()
     median = perth['price'].median()
     mode = perth['price'].mode()
@@ -35,7 +35,7 @@ def mean_median_mode():
 
 
 
-def plt_price_bedrooms():
+def plt_preco_quartos():
     perth['price_millions'] = perth['price'] / 1e6
     # Create a bar plot of price (in millions) vs. bedrooms
     plt.figure(figsize=(12, 6))
@@ -47,7 +47,7 @@ def plt_price_bedrooms():
     plt.show()
 
 
-def mean_median_mode_bedrooms():
+def media_mediana_moda_quartos():
     mean = perth['bedrooms'].mean()
     median = perth['bedrooms'].median()
     mode = perth['bedrooms'].mode()
@@ -55,7 +55,7 @@ def mean_median_mode_bedrooms():
     print('Mediana dos quartos:', median)
     print('Moda dos quartos:', mode)
 
-def mean_median_mode_bathrooms():
+def media_mediana_moda_bathrooms():
     mean = perth['bathrooms'].mean()
     median = perth['bathrooms'].median()
     mode = perth['bathrooms'].mode()
@@ -63,15 +63,15 @@ def mean_median_mode_bathrooms():
     print('Mediana das casas de banho:', median)
     print('Moda das casas de banho:', mode)
 
-def sold_date():
+def data_venda():
     sold_date = perth['date_sold'].value_counts()
     print(sold_date)
 
-def table_bedrooms_buildyear():
+def tabela_quartos_anoconstrucao():
     table = pd.crosstab(perth['bedrooms'], perth['yearbuilt'])
     print(table)
 
-def disp_price_landsize():
+def disp_preco_landsize():
     perth['price_millions'] = perth['price'] / 1e6
     plt.figure(figsize=(10, 6))
     sns.regplot(x='landsize', y='price_millions', data=perth)
@@ -81,19 +81,19 @@ def disp_price_landsize():
     plt.show()
 
 
-def frequency_table_bedrooms():
+def frequencia_quartos():
     table = perth['bedrooms'].value_counts()
     print(table)
 
-def frequency_table_yearbuilt():
+def frequencia_anoconstrucao():
     table = perth['yearbuilt'].value_counts()
     print(table)
 
-def number_suburbs():
+def numero_suburbios():
     number = perth['suburb'].value_counts()
     print(number)
 
-def price_garages():
+def preco_garagens():
     perth['price_millions'] = perth['price'] / 1e6
     plt.figure(figsize=(10, 6))
     perth.groupby('garage')['price_millions'].mean().plot(kind='bar', color='blue')
@@ -104,7 +104,7 @@ def price_garages():
     plt.show()
 
 
-def mean_median_mode_garages():
+def media_mediana_moda_garagens():
     mean = perth['garage'].mean()
     median = perth['garage'].median()
     mode = perth['garage'].mode()
@@ -114,7 +114,7 @@ def mean_median_mode_garages():
     print('Moda das garagens:', mode)
 
 
-def price_location():
+def preco_localizacao():
     perth['price_millions'] = perth['price'] / 1e6
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x='longitude', y='latitude', data=perth, hue='price_millions', palette='coolwarm')
@@ -124,7 +124,7 @@ def price_location():
     plt.show()
 
 #Preço em relação ao Ano de Construção:
-def price_yearbuilt():
+def preco_anoconstrucao():
     perth['price_millions'] = perth['price'] / 1e6
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x='yearbuilt', y='price_millions', data=perth, hue='price_millions', palette='coolwarm')
@@ -133,20 +133,23 @@ def price_yearbuilt():
     plt.ylabel('Preço (Milhões)')
     plt.show()
 
+''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
 
 # heatmap_v()
-# hist_price()
-# mean_median_mode()
-# plt_price_bedrooms()
-# mean_median_mode_bedrooms()
-# mean_median_mode_bathrooms()
-# sold_date()
-# table_bedrooms_buildyear()
-# disp_price_landsize()
-# frequency_table_bedrooms()
-# frequency_table_yearbuilt()
-# number_suburbs()
-# price_garages()
-# mean_median_mode_garages()
-# price_location()
-# price_yearbuilt()
+# hist_preco()
+# media_mediana_moda()
+# plt_preco_quartos()
+# media_mediana_moda_quartos()
+# media_mediana_moda_bathrooms()
+# data_venda()
+# tabela_quartos_anoconstrucao()
+# disp_preco_landsize()
+# frequencia_quartos()
+# frequencia_anoconstrucao()
+# numero_suburbios()
+# preco_garagens()
+# media_mediana_moda_garagens()
+# preco_localizacao()
+# preco_anoconstrucao()
+
+
