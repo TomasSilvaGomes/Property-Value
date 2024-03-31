@@ -52,7 +52,7 @@ def scatterplt_price_bedrooms():
     sns.scatterplot(x='bedrooms', y='price', data=melbourne, color='skyblue')
     plt.title('Preço em relação ao número de Quartos')
     plt.xlabel('Número de Quartos')
-    plt.ylabel('Preço')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 
@@ -62,7 +62,7 @@ def scatterplt_price_bathrooms():
     sns.scatterplot(x='bathrooms', y='price', data=melbourne, color='skyblue')
     plt.title('Preço em relação ao número de Casas de Banho')
     plt.xlabel('Número de Casas de Banho')
-    plt.ylabel('Preço')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 
@@ -115,7 +115,7 @@ def disp_price_landsize():
     plt.xlim(0, 100000)
     plt.title('Preço em relação ao Tamanho do Terreno')
     plt.xlabel('Tamanho do terreno (m²)')
-    plt.ylabel('Preço ')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 
@@ -124,7 +124,7 @@ def price_method():
     melbourne.groupby('method')['price'].mean().plot(kind='bar', color='skyblue')
     plt.title('Preço por método de venda')
     plt.xlabel('Método de Venda')
-    plt.ylabel('Preço')
+    plt.ylabel('Preço(A$)')
     plt.xticks(rotation=0)
     plt.show()
 
@@ -134,29 +134,29 @@ def disp_price_landsize_outlier():
     plt.xlim(0, 450000)
     plt.title('Preço em relação ao Tamanho do Terreno')
     plt.xlabel('Tamanho do terreno (m²)')
-    plt.ylabel('Preço ')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 
 ''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
 
-# heatmap_v()
-# mean_median_mode()
-# mean_median_mode_bedrooms()
-# mean_median_bathrooms()
-# mean_median_car()
-# count_type()
-# price_location()
-# scatterplt_price_bedrooms()
-# scatterplt_price_bathrooms()
-# table_bedrooms_buildyear()
-# frequency_table_bedrooms()
-# frequency_table_yearbuilt()
-# number_suburbs()
-# circular_graphic()
-# table_council_area()
-# disp_price_landsize()
-# price_method()
+heatmap_v()
+mean_median_mode()
+mean_median_mode_bedrooms()
+mean_median_bathrooms()
+mean_median_car()
+count_type()
+price_location()
+scatterplt_price_bedrooms()
+scatterplt_price_bathrooms()
+table_bedrooms_buildyear()
+frequency_table_bedrooms()
+frequency_table_yearbuilt()
+number_suburbs()
+circular_graphic()
+table_council_area()
+disp_price_landsize()
+price_method()
 #disp_price_landsize_outlier() #Em caso de querer ver o grafico inteiro com um unico outlier nitido.
 
 

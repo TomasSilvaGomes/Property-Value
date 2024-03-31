@@ -17,10 +17,9 @@ def heatmap_v():
 
 
 def hist_preco():
-    perth['price'] = perth['price'] / 1e6
     plt.hist(perth['price'], bins=100, color='purple')
     plt.title('Gráfico do preço')
-    plt.xlabel('Preço (em Milhões)')
+    plt.xlabel('Preço(A$)')
     plt.ylabel('Frequência')
     plt.show()
 
@@ -36,13 +35,12 @@ def media_mediana_moda():
 
 
 def plt_preco_quartos():
-    perth['price_millions'] = perth['price'] / 1e6
     # Create a bar plot of price (in millions) vs. bedrooms
     plt.figure(figsize=(12, 6))
-    perth.groupby('bedrooms')['price_millions'].mean().plot(kind='bar', color='skyblue')
-    plt.title('Average Price (in Millions) by Number of Bedrooms')
+    perth.groupby('bedrooms')['price'].mean().plot(kind='bar', color='skyblue')
+    plt.title('Preço por Numero de quartos')
     plt.xlabel('Numero de Quartos')
-    plt.ylabel('Average Price (Millions)')
+    plt.ylabel('Preço(A$)')
     plt.xticks(rotation=0)
     plt.show()
 
@@ -72,12 +70,11 @@ def tabela_quartos_anoconstrucao():
     print(table)
 
 def disp_preco_landsize():
-    perth['price_millions'] = perth['price'] / 1e6
     plt.figure(figsize=(10, 6))
-    sns.regplot(x='landsize', y='price_millions', data=perth)
+    sns.regplot(x='landsize', y='price', data=perth)
     plt.title('Preço em relação ao Tamanho do Terreno')
     plt.xlabel('Tamanho do terreno (m²)')
-    plt.ylabel('Preço (Milhões)')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 
@@ -94,12 +91,12 @@ def numero_suburbios():
     print(number)
 
 def preco_garagens():
-    perth['price_millions'] = perth['price'] / 1e6
+
     plt.figure(figsize=(10, 6))
-    perth.groupby('garage')['price_millions'].mean().plot(kind='bar', color='blue')
-    plt.title('Gráfico de Dispersão: Preço (em Milhões) vs. Quantidade de Garagens')
+    perth.groupby('garage')['price'].mean().plot(kind='bar', color='blue')
+    plt.title('Gráfico de Dispersão: Preço vs. Quantidade de Garagens')
     plt.xlabel('Quantidade de Garagens (Máx: 20)')
-    plt.ylabel('Preço (Milhões)')
+    plt.ylabel('Preço(A$)')
     plt.xticks(rotation=0)
     plt.show()
 
@@ -115,9 +112,9 @@ def media_mediana_moda_garagens():
 
 
 def preco_localizacao():
-    perth['price_millions'] = perth['price'] / 1e6
+
     plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='longitude', y='latitude', data=perth, hue='price_millions', palette='coolwarm')
+    sns.scatterplot(x='longitude', y='latitude', data=perth, hue='price', palette='coolwarm')
     plt.title('Preço em Relação à Localização Geográfica')
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
@@ -125,12 +122,11 @@ def preco_localizacao():
 
 #Preço em relação ao Ano de Construção:
 def preco_anoconstrucao():
-    perth['price_millions'] = perth['price'] / 1e6
+
     plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='yearbuilt', y='price_millions', data=perth, hue='price_millions', palette='coolwarm')
+    sns.scatterplot(x='yearbuilt', y='price', data=perth, hue='price', palette='coolwarm')
     plt.title('Preço em Relação ao Ano de Construção')
     plt.xlabel('Ano de Construção')
-    plt.ylabel('Preço (Milhões)')
     plt.show()
 
 ''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''

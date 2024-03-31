@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 delhi = pd.read_csv('Ficheiros/Delhi_v2.csv')
-
+delhi['price']= delhi['price'] / 83
 
 
 def heatmap():
@@ -51,7 +51,7 @@ def dispersao_preco_rooms():
     sns.scatterplot(x='bedrooms', y='price', data=delhi, color='skyblue')
     plt.title('Preço em relação ao número de Quartos')
     plt.xlabel('Número de Quartos')
-    plt.ylabel('Preço')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 def dispersao_preco_bathrooms():
@@ -59,7 +59,7 @@ def dispersao_preco_bathrooms():
     sns.scatterplot(x='bathrooms', y='price', data=delhi, color='skyblue')
     plt.title('Preço em relação ao número de Casas de Banho')
     plt.xlabel('Número de Casas de Banho')
-    plt.ylabel('Preço')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 def dispersao_preco_landsize():
@@ -67,7 +67,7 @@ def dispersao_preco_landsize():
     sns.scatterplot(x='landsize', y='price', data=delhi, color='skyblue')
     plt.title('Preço em relação ao tamanho do terreno')
     plt.xlabel('Tamanho do terreno')
-    plt.ylabel('Preço')
+    plt.ylabel('Preço(A$)')
     plt.show()
 
 def preco_localizacao():
@@ -114,20 +114,20 @@ def landsize_pricesqft():
 
 ''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
 
-# print(delhi.isnull().sum())
-# heatmap()
-# media_mediana_preco()
-# media_mediana_rooms()
-# media_mediana_bathrooms()
-# media_mediana_sqft()
-# tabela_tipo_de_construcao()
-# tabela_novo_ou_velho()
-# dispersao_preco_rooms()
-# dispersao_preco_bathrooms()
-# dispersao_preco_landsize()
-# preco_localizacao()
-# circular_novo_ou_velho()
-# circular_tipo_de_construcao()
-# histograma_novo_ou_velho()
-# histograma_tipo_de_construcao()
-# landsize_pricesqft()
+print(delhi.isnull().sum())
+heatmap()
+media_mediana_preco()
+media_mediana_rooms()
+media_mediana_bathrooms()
+media_mediana_sqft()
+tabela_tipo_de_construcao()
+tabela_novo_ou_velho()
+dispersao_preco_rooms()
+dispersao_preco_bathrooms()
+dispersao_preco_landsize()
+preco_localizacao()
+circular_novo_ou_velho()
+circular_tipo_de_construcao()
+histograma_novo_ou_velho()
+histograma_tipo_de_construcao()
+landsize_pricesqft()
