@@ -92,7 +92,38 @@ def preco_anodeconstrucao():
     plt.ylabel('Preço(A$)')
     plt.show()
 
+def outliers():
+    ficheiro_concat = pd.read_csv('Ficheiros/ficheiro_concat.csv')
+    ficheiro_concat_outliers = ficheiro_concat.drop(columns=['date_sold', 'yearbuilt'])
+    Q1 = ficheiro_concat_outliers.quantile(0.25)
+    Q3 = ficheiro_concat_outliers.quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    print(ficheiro_concat_outliers[(ficheiro_concat_outliers < lower_bound) | (ficheiro_concat_outliers > upper_bound)].count())
+    return ficheiro_concat_outliers[(ficheiro_concat_outliers < lower_bound) | (ficheiro_concat_outliers > upper_bound)].count()
 
+def remover_outliers():
+    ficheiro_concat = pd.read_csv('Ficheiros/ficheiro_concat.csv')
+    ficheiro_concat_outliers = ficheiro_concat.drop(columns=['date_sold', 'yearbuilt'])
+    Q1 = ficheiro_concat_outliers.quantile(0.25)
+    Q3 = ficheiro_concat_outliers.quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    ficheiro_concat_outliers = ficheiro_concat_outliers[~((ficheiro_concat_outliers < lower_bound) | (ficheiro_concat_outliers > upper_bound)).any(axis=1)]
+    print(ficheiro_concat_outliers)
+    return ficheiro_concat_outliers
+def remover_nulls():
+    ficheiro_concat = pd.read_csv('Ficheiros/ficheiro_concat.csv')
+    print(ficheiro_concat.isnull().sum())
+    ficheiro_concat = ficheiro_concat.dropna()
+    print(ficheiro_concat)
+    print(ficheiro_concat.isnull().sum())
+    return ficheiro_concat
+
+
+''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
 
 # preco_casas()
 # preco_quartos()
@@ -101,3 +132,6 @@ def preco_anodeconstrucao():
 # tabela_datavenda()
 # quartos_bathrooms_preco()
 # preco_anodeconstrucao()
+# outliers()
+# remover_outliers()
+# remover_nulls()
