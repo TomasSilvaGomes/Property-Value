@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 perth = pd.read_csv('Ficheiros/perth_file.csv')
-
+perth['landsize'] = perth['landsize'] / 10,76
 
 def heatmap_v():
     perth = pd.read_csv('Ficheiros/perth_file.csv')
