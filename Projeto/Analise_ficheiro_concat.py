@@ -3,7 +3,9 @@ from folium.plugins import MarkerCluster
 import folium
 import seaborn as sns
 from Projeto import *
-
+delhi['landsize'] = delhi['landsize'] / 10,76
+melbourne['landsize'] = melbourne['landsize'] / 10,76
+perth['landsize'] = perth['landsize'] / 10,76
 
 '''
 ficheiro_concat = pd.read_csv('Ficheiros/ficheiro_concat.csv')
