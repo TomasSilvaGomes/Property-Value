@@ -4,7 +4,7 @@ import seaborn as sns
 
 delhi = pd.read_csv('Ficheiros/Delhi_v2.csv')
 delhi['price']= delhi['price'] / 83
-delhi['landsize'] = delhi['landsize'] / 10,76
+delhi['landsize'] = delhi['landsize'] / 10.76
 
 def heatmap():
     delhi = pd.read_csv('Ficheiros/Delhi_v2.csv')

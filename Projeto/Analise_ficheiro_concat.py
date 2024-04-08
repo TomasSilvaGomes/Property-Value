@@ -3,11 +3,10 @@ from folium.plugins import MarkerCluster
 import folium
 import seaborn as sns
 from Projeto import *
-delhi['landsize'] = delhi['landsize'] / 10,76
-melbourne['landsize'] = melbourne['landsize'] / 10,76
-perth['landsize'] = perth['landsize'] / 10,76
+delhi['landsize'] = delhi['landsize'] / 10.76
+melbourne['landsize'] = melbourne['landsize'] / 10.76
+perth['landsize'] = perth['landsize'] / 10.76
 
-'''
 ficheiro_concat = pd.read_csv('Ficheiros/ficheiro_concat.csv')
 mapa = folium.Map(location=[-31.9, 115.9], zoom_start=10)
 marker_cluster = MarkerCluster().add_to(mapa)
@@ -17,7 +16,6 @@ for index, row in ficheiro_concat.iterrows():
 
 mapa.save('mapa.html')
 
-'''
 def mapa_mundi():
     ficheiro_concat = pd.read_csv('Ficheiros/ficheiro_concat.csv')
     mapa = folium.Map(location=[-31.9, 115.9], zoom_start=10)
@@ -126,7 +124,7 @@ def remover_nulls():
 
 
 ''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
-
+#print(ficheiro_concat.isnull().sum())
 # preco_casas()
 # preco_quartos()
 # percentagem_casas()

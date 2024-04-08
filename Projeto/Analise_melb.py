@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 melbourne = pd.read_csv('Ficheiros/melb_data.csv')
-melbourne['landsize'] = melbourne['landsize'] / 10,76
+melbourne['landsize'] = melbourne['landsize'] / 10.76
 
 def heatmap_v():
     melbourne = pd.read_csv('Ficheiros/melb_data.csv')
@@ -139,9 +139,9 @@ def disp_price_landsize_outlier():
 
 
 ''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
-
+# print(melbourne.isnull().sum())
 # heatmap_v()
-# mean_median_mode()
+#mean_median_mode()
 # mean_median_mode_bedrooms()
 # mean_median_bathrooms()
 # mean_median_car()

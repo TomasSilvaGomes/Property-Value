@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 perth = pd.read_csv('Ficheiros/perth_file.csv')
-perth['landsize'] = perth['landsize'] / 10,76
+perth['landsize'] = perth['landsize'] / 10.76
 
 def heatmap_v():
     perth = pd.read_csv('Ficheiros/perth_file.csv')
@@ -130,7 +130,7 @@ def preco_anoconstrucao():
     plt.show()
 
 ''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
-
+# print(perth.isnull.sum())
 # heatmap_v()
 # hist_preco()
 # media_mediana_moda()
