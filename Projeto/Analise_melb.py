@@ -145,7 +145,7 @@ def disp_price_landsize_outlier():
 # mean_median_bathrooms()
 # mean_median_car()
 # count_type()
-# price_location()
+price_location()
 # scatterplt_price_bedrooms()
 # scatterplt_price_bathrooms()
 # table_bedrooms_buildyear()
