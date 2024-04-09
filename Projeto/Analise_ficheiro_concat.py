@@ -2,12 +2,14 @@ import matplotlib.pyplot as plt
 from folium.plugins import MarkerCluster
 import folium
 import seaborn as sns
-from Projeto import *
-delhi['landsize'] = delhi['landsize'] / 10.76
-melbourne['landsize'] = melbourne['landsize'] / 10.76
-perth['landsize'] = perth['landsize'] / 10.76
+import pandas as pd
+
+perth = pd.read_csv('Ficheiros/perth_file.csv')
+melbourne = pd.read_csv('Ficheiros/melb_data.csv')
+delhi = pd.read_csv('Ficheiros/Delhi_v2.csv')
 
 ficheiro_concat = pd.read_csv('Ficheiros/ficheiro_concat.csv')
+'''
 mapa = folium.Map(location=[-31.9, 115.9], zoom_start=10)
 marker_cluster = MarkerCluster().add_to(mapa)
 
@@ -25,7 +27,7 @@ def mapa_mundi():
         folium.Marker([row['latitude'], row['longitude']], popup=f"Price: ${row['price']}").add_to(marker_cluster)
 
     mapa.save('mapa.html')
-
+'''
 
 def preco_casas():
     labels = 'Perth', 'Melbourne', 'Delhi'
@@ -134,4 +136,6 @@ def remover_nulls():
 # preco_anodeconstrucao()
 # outliers()
 # remover_outliers()
+# print(ficheiro_concat.isnull().sum())
 # remover_nulls()
+# print(ficheiro_concat.describe())
