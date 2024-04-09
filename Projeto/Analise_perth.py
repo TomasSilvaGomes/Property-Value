@@ -46,16 +46,16 @@ def plt_preco_quartos():
 
 
 def media_mediana_moda_quartos():
-    mean = perth['bedrooms'].mean()
-    median = perth['bedrooms'].median()
+    mean = int(perth['bedrooms'].mean())
+    median = int(perth['bedrooms'].median())
     mode = perth['bedrooms'].mode()
     print('\nMédia dos quartos:', mean)
     print('Mediana dos quartos:', median)
     print('Moda dos quartos:', mode)
 
 def media_mediana_moda_bathrooms():
-    mean = perth['bathrooms'].mean()
-    median = perth['bathrooms'].median()
+    mean = int(perth['bathrooms'].mean())
+    median = int(perth['bathrooms'].median())
     mode = perth['bathrooms'].mode()
     print('\nMédia das casas de banho:', mean)
     print('Mediana das casas de banho:', median)

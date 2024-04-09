@@ -16,20 +16,20 @@ def heatmap():
     plt.show()
 
 def media_mediana_preco():
-    mean = delhi['price'].mean()
-    median = delhi['price'].median()
+    mean = int(delhi['price'].mean())
+    median = int(delhi['price'].median())
     print('Média do preço:', mean)
     print('Mediana do preço:', median)
 
 def media_mediana_rooms():
-    media = delhi['bedrooms'].mean()
-    mediana = delhi['bedrooms'].median()
+    media = int(delhi['bedrooms'].mean())
+    mediana = int(delhi['bedrooms'].median())
     print('\nMédia dos quartos:', media)
     print('Mediana dos quartos:', mediana)
 
 def media_mediana_bathrooms():
-    media = delhi['bathrooms'].mean()
-    mediana = delhi['bathrooms'].median()
+    media = int(delhi['bathrooms'].mean())
+    mediana = int(delhi['bathrooms'].median())
     print('\nMédia das casas de banho:', media)
     print('Mediana das casas de banho:', mediana)
 

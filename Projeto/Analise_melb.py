@@ -16,22 +16,22 @@ def heatmap_v():
 
 
 def mean_median_mode():
-    mean = melbourne['price'].mean()
-    median = melbourne['price'].median()
+    mean = int(melbourne['price'].mean())
+    median = int(melbourne['price'].median())
     print('Média do preço:', mean)
     print('Mediana do preço:', median)
 
 
 
 def mean_median_mode_bedrooms():
-    mean = melbourne['bedrooms'].mean()
-    median = melbourne['bedrooms'].median()
+    mean = int(melbourne['bedrooms'].mean())
+    median = int(melbourne['bedrooms'].median())
     print('\nMédia dos quartos:', mean)
     print('Mediana dos quartos:', median)
 
 def mean_median_bathrooms():
-    mean = melbourne['bathrooms'].mean()
-    median = melbourne['bathrooms'].median()
+    mean = int(melbourne['bathrooms'].mean())
+    median = int(melbourne['bathrooms'].median())
     print('\nMédia das casas de banho:', mean)
     print('Mediana das casas de banho:', median)
 
@@ -141,7 +141,7 @@ def disp_price_landsize_outlier():
 ''' Se necessário visualizar algum gráfico, basta descomentar a função correspondente. '''
 # print(melbourne.isnull().sum())
 # heatmap_v()
-#mean_median_mode()
+# mean_median_mode()
 # mean_median_mode_bedrooms()
 # mean_median_bathrooms()
 # mean_median_car()
