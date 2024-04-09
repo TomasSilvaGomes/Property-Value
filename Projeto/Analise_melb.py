@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 melbourne = pd.read_csv('Ficheiros/melb_data.csv')
-melbourne['landsize'] = melbourne['landsize'] / 10.76
 
 def heatmap_v():
     melbourne = pd.read_csv('Ficheiros/melb_data.csv')
